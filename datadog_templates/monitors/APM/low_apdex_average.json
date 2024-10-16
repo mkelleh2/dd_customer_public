@@ -1,0 +1,22 @@
+{
+    "name": "Abnormal change in Apdex for $service.value on $env",
+    "type": "query alert",
+    "query": "avg(last_10m):avg:trace.__operation_name_placeholder__.apdex{$env,$service} < 85",
+    "message": "Apdex deviated too much from its usual value for $service on $env.",
+    "tags": [
+        "$service",
+        "$env",
+        "product:apm"
+    ],
+    "options": {
+        "thresholds": {
+            "critical": 85,
+            "warning": 90
+        },
+        "notify_audit": false,
+        "threshold_windows": {},
+        "include_tags": false,
+		"notify_no_data": false,
+		"silenced": {}
+    }
+}

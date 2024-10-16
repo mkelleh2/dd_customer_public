@@ -1,0 +1,25 @@
+{
+	"name": "[System Monitor] Disk Latency is High on {{host.name}}",
+	"type": "query alert",
+	"query": "avg(last_5m):avg:system.io.await{*} by {host} > 500",
+	"message": "Disk latency is the time that it takes to complete a single I/O operation on a block device. This monitor tracks the disk latency in individual hosts to identify performance bottlenecks and ensure optimal system operation.",
+	"tags": [
+		"integration:system"
+	],
+	"options": {
+		"escalation_message": "",
+		"include_tags": true,
+		"new_host_delay": 300,
+		"notify_no_data": false,
+		"require_full_window": true,
+		"thresholds": {
+			"critical": 500
+		},
+		"notify_audit": false,
+		"silenced": {}
+	},
+	"priority": null,
+	"restriction_policy": {
+		"bindings": []
+	}
+}

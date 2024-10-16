@@ -1,0 +1,27 @@
+{
+	"name": "[System Monitor] Host not reporting data",
+	"type": "service check",
+	"query": "\"datadog.agent.up\".over(\"*\").by(\"host\").last(2).count_by_status()",
+	"message": "No data has been reported from host {{host.name}} in the past 2 minutes. This may signal problems with data submission from the host.",
+	"tags": [
+		"integration:system"
+    ],
+	"options": {
+		"include_tags": true,
+		"new_host_delay": 300,
+		"no_data_timeframe": 15,
+		"notify_no_data": true,
+		"require_full_window": true,
+		"thresholds": {
+			"critical": 1,
+			"ok": 1,
+			"warning": 1
+		},
+		"notify_audit": false,
+		"silenced": {}
+	},
+	"priority": null,
+	"restriction_policy": {
+		"bindings": []
+	}
+}

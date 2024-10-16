@@ -1,0 +1,19 @@
+{
+    "name": "P75 of first input delay is too high for application {{[@application.name].name}}",
+    "type": "rum alert",
+    "query": "rum(\"@type:view @session.type:user source:browser\").rollup(\"pc75\", \"@view.first_input_delay\").by(\"@application.name\").last(\"1h\") > 300000000",
+    "message": "High first input delay can result in degraded experiences for your end users ([learn more](https://docs.datadoghq.com/real_user_monitoring/browser/monitoring_page_performance/#event-timings-and-core-web-vitals)).",
+    "tags": [],
+    "options": {
+        "thresholds": {
+            "critical": 300000000,
+            "warning": 100000000
+        },
+        "enable_logs_sample": false,
+        "notify_audit": false,
+        "restriction_query": null,
+        "on_missing_data": "default",
+        "include_tags": false,
+        "new_group_delay": 60
+    }
+}

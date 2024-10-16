@@ -1,0 +1,27 @@
+{
+    "name": "New issues found for {{service}} on {{env}}",
+    "type": "error-tracking alert",
+    "query": "error-tracking-traces(\"(@issue.age:<=300000 OR @issue.regression.age:<=300000) $service $env\").rollup(\"count\").by(\"env,service,@issue.id\").last(\"5m\") > 5",
+    "message": "A new [issue](https://app.datadog.com/apm/error-tracking/issue/{{[@issue.id].name}}) has been detected.\n\n{{#is_alert}}\n```\n{{span.error.type}}: {{span.attributes.error.message}}\n```\n{{/is_alert}}",
+    "tags": [
+        "$service",
+        "$env",
+        "product:apm"
+    ],
+    "options": {
+        "thresholds": {
+            "critical": 5,
+            "warning": 3
+        },
+        "enable_logs_sample": false,
+        "notify_audit": false,
+        "on_missing_data": "default",
+        "include_tags": true,
+        "new_host_delay": 300,
+        "avalanche_window": 10,
+        "groupby_simple_monitor": false,
+        "silenced": {}
+    },
+    "priority": null,
+    "restricted_roles": null
+}

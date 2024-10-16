@@ -1,0 +1,27 @@
+{
+	"name": "[System Monitor] CPU usage is high for host {{host.name}}",
+	"type": "query alert",
+	"query": "avg(last_5m):100 - avg:system.cpu.idle{*} by {host} > 90",
+	"message": "{{#is_alert}}\nHigh CPU usage has been detected for host {{host.name}} at {{threshold}} %, which can impact the system performance.\n{{/is_alert}}\n\n{{#is_alert_recovery}}\nThe high CPU usage detected for host {{host.name}} has recovered.\n{{/is_alert_recovery}}\n\n{{#is_warning}}\nThis is a warning message. High CPU usage has been detected for host {{host.name}} at {{threshold}} %, which can impact the system performance. \n{{/is_warning}}\n\n{{#is_warning_recovery}}\nThe warning related to high CPU usage detected for host {{host.name}} has recovered.\n{{/is_warning_recovery}}",
+	"tags": [
+		"integration:system"	
+    ],
+	"options": {
+		"include_tags": true,
+		"new_host_delay": 300,
+		"notify_no_data": false,
+		"require_full_window": true,
+		"thresholds": {
+			"critical": 90,
+			"critical_recovery": 85,
+			"warning": 85,
+			"warning_recovery": 80
+		},
+		"notify_audit": false,
+		"silenced": {}
+	},
+	"priority": null,
+	"restriction_policy": {
+		"bindings": []
+	}
+}

@@ -1,0 +1,19 @@
+{
+    "name": "P75 of interaction to next paint is too high for application {{[@application.name].name}}",
+    "type": "rum alert",
+    "query": "rum(\"@type:view @session.type:user source:browser\").rollup(\"pc75\", \"@view.interaction_to_next_paint\").by(\"@application.name\").last(\"1h\") > 500000000",
+    "message": "High interaction to next paint can indicate degraded experiences for your end users ([learn more](https://docs.datadoghq.com/real_user_monitoring/browser/monitoring_page_performance/#event-timings-and-core-web-vitals)).",
+    "tags": [],
+    "options": {
+        "thresholds": {
+            "critical": 500000000,
+            "warning": 200000000
+        },
+        "enable_logs_sample": false,
+        "notify_audit": false,
+        "restriction_query": null,
+        "on_missing_data": "default",
+        "include_tags": false,
+        "new_group_delay": 60
+    }
+}

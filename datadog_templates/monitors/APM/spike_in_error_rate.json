@@ -1,0 +1,18 @@
+{
+    "name": "Increased error rate for $service.value in $env",
+    "type": "query alert",
+    "query": "change(avg(last_10m),last_4h):sum:trace.__operation_name_placeholder__.errors{$service, $env}.as_rate() > 3",
+    "message": "A spike in error rate was detected for $service on $env.",
+    "tags": [
+        "$service",
+        "$env",
+        "product:apm"
+    ],
+    "options": {
+        "thresholds": {
+            "critical": 3
+        },
+        "notify_audit": false,
+        "include_tags": false
+    }
+}

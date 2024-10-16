@@ -1,0 +1,24 @@
+{
+	"name": "[System Monitor] Network traffic (sent) is high on host {{host.name}}",
+	"type": "query alert",
+	"query": "avg(last_15m):avg:system.net.bytes_sent{*} by {host} / (1024 * 1024 * 1024) > 0.08",
+	"message": "High network traffic (bytes sent) for host {{host.name}}. This may impact system performance.",
+	"tags": [
+		"integration:system"
+	],
+	"options": {
+		"include_tags": true,
+		"new_host_delay": 300,
+		"notify_no_data": false,
+		"require_full_window": true,
+		"thresholds": {
+			"critical": 0.08
+		},
+		"notify_audit": false,
+		"silenced": {}
+	},
+	"priority": null,
+	"restriction_policy": {
+		"bindings": []
+	}
+}

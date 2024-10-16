@@ -1,0 +1,19 @@
+{
+    "name": "P75 of largest contentful paint is too high for application {{[@application.name].name}}",
+    "type": "rum alert",
+    "query": "rum(\"@type:view @session.type:user source:browser\").rollup(\"pc75\", \"@view.largest_contentful_paint\").by(\"@application.name\").last(\"1h\") > 4000000000",
+    "message": "High largest contentful paint can result in degraded experiences for your end users ([learn more](https://docs.datadoghq.com/real_user_monitoring/browser/monitoring_page_performance/#event-timings-and-core-web-vitals)).",
+    "tags": [],
+    "options": {
+        "thresholds": {
+            "critical": 4000000000,
+            "warning": 2500000000
+        },
+        "enable_logs_sample": false,
+        "notify_audit": false,
+        "restriction_query": null,
+        "on_missing_data": "default",
+        "include_tags": false,
+        "new_group_delay": 60
+    }
+}

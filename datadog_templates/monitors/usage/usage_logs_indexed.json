@@ -1,0 +1,31 @@
+{
+	"name": "[Estimated Usage] Logs Indexed Events",
+	"type": "query alert",
+	"query": "sum(current_1mo):sum:datadog.estimated_usage.logs.ingested_events{*}.as_count() > 2000000",
+	"message": "{{#is_alert}}\nLogs Indexed Events estimated usage is now {{value}} and has exceeded the committed threshold of {{threshold}}.\n{{/is_alert}}\n\n{{#is_warning}}\nLogs Ingested Bytes estimated usage is now {{value}} and is approaching the committed threshold of {{threshold}}.\n{{/is_warning}} \n\nPlease reach out to your Datadog Customer Success Manager / Account Executive to obtain assistance in planning capacity and optimizing costs.",
+	"tags": [
+		"integration:estimated_usage"
+	],
+	"options": {
+		"thresholds": {
+			"critical": 2000000,
+			"warning": 1000000
+		},
+		"notify_audit": false,
+		"require_full_window": false,
+		"renotify_interval": 0,
+		"include_tags": false,
+		"scheduling_options": {
+			"evaluation_window": {
+				"month_starts": 1,
+				"day_starts": "16:00",
+				"timezone": "UTC"
+			}
+		},
+		"silenced": {}
+	},
+	"priority": null,
+	"restriction_policy": {
+		"bindings": []
+	}
+}

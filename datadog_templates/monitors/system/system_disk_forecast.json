@@ -1,0 +1,27 @@
+{
+	"name": "[System Monitor] Disk is going to fill up on {{host.name}} within the next 48 hours!",
+	"type": "query alert",
+	"query": "max(next_2d):forecast((avg:system.disk.used{!device:/dev*, *} by {host} * 100) / avg:system.disk.total{!device:/dev*, *} by {host}, 'linear', 1, model='default', interval='60m', history='1d') >= 90",
+	"message": "# Issue\n\nBy using [Datadog's Advanced ML Forecast alerts](https://www.datadoghq.com/blog/forecasts-datadog/), we have identified that there is going to be a disk filling up within the next 48 hours!  Please use the pre-built dashboard below to view overall server state and ensure that you either provision more space or delete some files.\n\nPlease take a look at the [host dashboard](https://app.datadoghq.com/dash/1035440/host-overview-dashboard?tile_size=m&page=0&is_auto=false&from_ts=1546613220000&to_ts=1546616820000&live=true&tpl_var_host={{host.name}}) for host {{host.name}} as the disk will be full within the next 48 hours\n\n# Host Specifics\n- hostname: {{host.name}} \n- host IP: {{host.ip}} \n- datacenter: AWS US East1\n\n# Other references:  \n    - [Devops Wiki](https://github.com/DataDog/devops/wiki)  \n    - [Ops Runbook](https://torii.datadoghq.com/)\n\n\n\n{{#is_alert}}\n\n{{pod_name.name}} forecasted to be at {{value}}% mem utilization. \n\nInspect: [Live Containers View](https://app.datadoghq.com/orchestration/overview/pod?query=tag%23pod_name%3{{pod_name.name}})\n\n{{/is_alert}}\n\n\n\n{{#is_match \"env\" \"prod\"}}\n\n##Note this is a production workload creating PagerDuty Incident \n\n{{/is_match}}",
+	"tags": [
+		"integration:system"
+	],
+	"options": {
+		"include_tags": true,
+		"new_host_delay": 300,
+		"notify_no_data": false,
+		"require_full_window": true,
+		"thresholds": {
+			"critical": 90,
+			"critical_recovery": 80,
+			"warning": 80,
+			"warning_recovery": 70
+		},
+		"notify_audit": false,
+		"silenced": {}
+	},
+	"priority": null,
+	"restriction_policy": {
+		"bindings": []
+	}
+}

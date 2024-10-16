@@ -1,0 +1,23 @@
+{
+	"name": "[Estimated Usage] Custom Metrics Ingested",
+	"type": "query alert",
+	"query": "avg(last_1h):sum:datadog.estimated_usage.metrics.custom.ingested{*} > 320000",
+	"message": "{{#is_alert}}\nCustom Metrics Ingested estimated usage is now {{value}} and has exceeded the committed threshold of {{threshold}}.\n{{/is_alert}}\n\n{{#is_warning}}\nCustom Metrics Ingested estimated usage is now {{value}} and is approaching the committed threshold of {{threshold}}.\n{{/is_warning}} \n\nPlease reach out to your Datadog Customer Success Manager / Account Executive to obtain assistance in planning capacity and optimizing costs.",
+	"tags": [
+		"integration:estimated_usage"
+	],
+	"options": {
+		"thresholds": {
+			"critical": 320000,
+			"warning": 300000
+		},
+		"notify_audit": false,
+		"require_full_window": false,
+		"notify_no_data": false,
+		"renotify_interval": 0,
+		"include_tags": false,
+		"silenced": {}
+	},
+	"priority": null,
+	"restricted_roles": null
+}

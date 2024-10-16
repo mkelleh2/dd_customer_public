@@ -1,0 +1,29 @@
+{
+	"name": "[Estimated Usage] Browser RUM Sessions",
+	"type": "query alert",
+	"query": "sum(current_1mo):sum:datadog.estimated_usage.rum.sessions{sku:browser}.as_count() > 120000",
+	"message": "{{#is_alert}}\nBrowser RUM Sessions estimated usage is now {{value}} and has exceeded the committed threshold of {{threshold}}.\n{{/is_alert}}\n\n{{#is_warning}}\nBrowser RUM Sessions estimated usage is now {{value}} and is approaching the committed threshold of {{threshold}}.\n{{/is_warning}} \n\nPlease reach out to your Datadog Customer Success Manager / Account Executive to obtain assistance in planning capacity and optimizing costs.",
+	"tags": [
+		"integration:estimated_usage"
+	],
+	"options": {
+		"thresholds": {
+			"critical": 120000,
+			"warning": 100000
+		},
+		"notify_audit": false,
+		"require_full_window": false,
+		"notify_no_data": false,
+		"renotify_interval": 0,
+		"include_tags": false,
+		"scheduling_options": {
+			"evaluation_window": {
+				"month_starts": 1,
+				"day_starts": "16:00"
+			}
+		},
+		"silenced": {}
+	},
+	"priority": null,
+	"restricted_roles": null
+}
