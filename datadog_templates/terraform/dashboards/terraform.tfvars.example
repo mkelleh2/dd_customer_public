@@ -1,0 +1,44 @@
+# Basics
+dashboard_tags=["team:implementation-services", "team:is"]
+dashboard_title_prefix="Implementation Services - "
+timezone="America/Denver"
+site="app.datadoghq.com"
+customer_name="Datadog Internal Example"
+dd_service_architect = { 
+    name = "Don Gothing"
+    email = "don.gothing@datadoghq.com" 
+}
+dd_office_hours      = ""
+dd_support_email     = "support@datadoghq.com"
+dd_support_portal    = "https://support.datadoghq.com"
+
+##################
+# Infrastructure
+##################
+infra_host_count=100
+custom_metrics_indexed= 150000
+custom_metrics_ingested= 60000
+
+##################
+# APM
+##################
+apm_hosts = 1000
+apm_ingested_bytes = 100000000
+apm_indexed_spans = 1000000
+apm_host_count = 100
+
+##################
+# Synthetics & RUM
+##################
+synthetics_browser_tests = 3000000
+synthetics_api_tests = 2800000
+rum_sessions = 1000000
+rum_sessions_with_replay = 1200000
+
+##################
+# Logs
+##################
+logs_ingested_bytes = 150000000000000
+logs_ingested_events = 60000000000
+logs_indexed_events = 10000000
+

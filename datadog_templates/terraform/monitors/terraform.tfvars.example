@@ -1,0 +1,13 @@
+query_filter = "core:true"
+query_group  = "host, env"
+
+
+infra_host_count = 100
+apm_hosts = 100
+custom_metrics = 100000
+rum_sessions = 100000
+rum_sessions_with_replay = 100000
+logs_ingested_bytes = 1000000000
+apm_ingested_bytes = 1000000000
+logs_indexed_events = 1000000
+apm_indexed_spans = 1000000
